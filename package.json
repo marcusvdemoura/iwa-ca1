@@ -1,0 +1,12 @@
+{
+  "name": "iwa-ca1",
+  "version": "1.0.0",
+  "description": "ca1 for web applications CCT college - Marcus Moura",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Marcus Moura - 2021247",
+  "license": "ISC"
+}
