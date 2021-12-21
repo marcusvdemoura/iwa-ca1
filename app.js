@@ -1,16 +1,30 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+
+const path = require('path');
+
+const routes = require('./routes');
+
+const BikesLocService = require('./services/BikesLocService');
+
+const bikesLocService = new BikesLocService('./data/dublin-bikes.json');
+
 const app = express();
-const port = process.env.PORT || "8100";
 
-app.use(express.static(path.resolve(__dirname,'views')));
+const port = 3000;
 
+app.set('view engine', 'ejs');
 
-app.get("/", (req, res) => {
-    res.render("/index.html", { title: "Home" });
-  });
+app.set('views', path.join(__dirname, './views'));
 
+app.use(express.static(path.join(__dirname, './static')));
 
-  app.listen(port, () => {
-    console.log(`Server on http://localhost:${port}`);
-  });
+app.use(
+  '/',
+  routes({
+    bikesLocService,
+  })
+);
+
+app.listen(port, () => {
+  console.log(`Express server listening on port ${port}!`);
+});
